@@ -1,0 +1,228 @@
+/*
+* @Author: Administrator
+* @Date:   2017-07-18 17:41:51
+* @Last Modified by:   Administrator
+* @Last Modified time: 2017-08-26 13:31:36
+*/
+*{
+	padding: 0;
+	margin: 0;
+	font-family:"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+	color: #fff;
+	list-style: none;
+}
+html,body{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+video{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 50%;
+	top: 0;
+	transform: translateX(-50%);
+	object-fit: fill;
+}
+.container{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 200%;
+	overflow: hidden;
+	transition: 0.5s ease-in-out;
+}
+.container>div{
+	height: 50%;
+	overflow: hidden;
+}
+.container section{
+	width: 1000px;
+	height: 200px;
+	margin: 30px auto;
+	background: rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+}
+.container .search{
+	margin-top: 140px;
+	height: 60px;
+	margin-bottom: 10px;
+	padding: 10px 30px;
+	box-sizing: border-box;
+	position: relative;
+}
+.container .search .btn{
+	position: absolute;
+	right: 485px;
+
+	top: 15px;
+	width: 30px;
+	height: 30px;
+	border: 2px solid rgba(0, 0, 255, 0.8);
+	border-radius: 50%;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+.container .search input{
+	background: transparent;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	border-radius: 5px;
+	color: #fff;
+	padding: 0 20px;
+	box-sizing: border-box;
+	/* font-size: 20px; */
+}
+::-webkit-input-placeholder {
+  color: #fff;
+}
+:-moz-placeholder {/* Firefox 18- */
+  color: #fff;
+}
+::-moz-placeholder{/* Firefox 19+ */
+ color: #fff;
+}
+:-ms-input-placeholder {
+  color: #fff;
+}
+.container .now{
+	margin-top: 10px;
+	height: 300px;
+	padding-top: 30px;
+	box-sizing: border-box;
+}
+.container .now>div{
+	width: 30%;
+	box-sizing: border-box;
+	height: 100%;
+	float: left;
+	padding: 20px;
+}
+.container .now>div>div{
+	margin: 10px 0;
+}
+.container .now .tq{
+	position: relative;
+	margin-left: 30px;
+}
+.container .now .tq span{
+	position: absolute;
+	right: 60px;
+	bottom: 10px;
+}
+.container .now .now-basic{
+	/* text-align: center; */
+}
+.container .now .now-now{
+	/* text-align: center; */
+	/* font-size: 14px; */
+}
+.container .forecast{
+	margin-top: 30px;
+	height: 200px;
+}
+.container .forecast img{
+	width: 40px;
+	margin-left: 20px;
+}
+.container .forecast ul{
+	width: 33.3333%;
+	height: 100%;
+	padding: 10px 80px;
+	float: left;
+	box-sizing: border-box;
+}
+.container .forecast ul li{
+	margin: 5px 0;
+}
+.container .suggestion{
+	background-color: transparent;
+	display: flex;
+	justify-content: space-between;
+	align-content: space-between;
+	flex-wrap: wrap;
+	height: 200px;
+	margin-bottom: 150px;
+}
+.container .suggestion>div{
+	width: 32%;
+	height: 90px;
+	position: relative;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.container .suggestion>div .con{
+	width: 100%;
+	height:100%;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	background: rgba(0, 0, 0, 0.2);
+	
+	display: none;
+}
+.container .suggestion>div h4{
+	margin-bottom: 10px;
+}
+.container .suggestion>div span{
+	font-size: 12px;
+}
+.container .suggestion>div:hover .con{
+	display: block;
+}
+.container .suggestion>div:hover .cover{
+	top: 100%;
+}
+.xiahua{
+	margin: 20px auto;
+	cursor: pointer;
+	display: block;
+}
+.top{
+	position: absolute;
+	bottom:30px;
+	right: 20px;
+	cursor: pointer;
+}
+.suggestion .cover{
+	transition:all 0.3s ease;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 5px;
+	background: rgba(135,206,235,0.7);
+	box-sizing: border-box;
+	padding: 20px 75px;
+}
+.suggestion .cover .text{
+	float: right;
+	text-align: right;
+}
+.suggestion .cover .text h3{
+	font-size: 16px;
+}
+.suggestion .cover .img:nth-child(1){
+	width: 60px;
+	height: 60px;
+	background-size: 50%;
+	background:url(../img/iconall.png) 50px 50px;
+}
+
+.iconfont{
+	font-size: 16px;
+	margin-right: 10px;
+}
+i.day{
+	font-size: 25px;
+	color: gold;
+	line-height: 0;
+}
+i.night{
+	color: skyblue;
+	font-size: 20px;
+	line-height: 0;
+	margin-left: 2px
+}

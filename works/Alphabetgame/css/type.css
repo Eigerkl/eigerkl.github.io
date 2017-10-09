@@ -1,0 +1,275 @@
+/*
+* @Author: Administrator
+* @Date:   2017-07-06 17:17:36
+* @Last Modified by:   Administrator
+* @Last Modified time: 2017-07-08 18:09:13
+*/
+		*{
+	    	margin: 0;
+	    	padding: 0;
+            list-style: none;
+	    }
+	    html,body{
+	    	width: 100%;
+	    	height: 100%;
+	    	overflow: hidden;
+            background: url(../sucai/bg.png) center center no-repeat /cover;
+	    }
+	    .logo{
+	    	width: 608px;
+	    	height: 249px;
+	    	margin: auto;
+	    	margin-top: 150px;
+	    	/* transition: all 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95); */
+	    	animation: logoMove 1s ease-in-out infinite alternate;
+	    }
+	    @keyframes logoMove{
+			from{ transform:translate(-25px,0) }
+			to{transform:translate(25px,0) }
+	    }
+	    .btn{
+	    	width: 800px;
+	    	overflow: hidden; 
+	    	margin: 0 auto;
+	    	margin-top: 20px;
+	    }
+	    .btn>div{
+			float: left;
+			cursor: pointer;
+			transition: transform 0.2s ease;
+	    }
+	    .btn>div:hover{
+	    	transform: scale(1.1, 1.1)
+	    }
+		.choose{
+			margin: 0 30px;
+		}
+		.music{
+			position: absolute;
+			left: 100px;
+			top: 30px;
+			width: 45px;
+			height: 45px;
+			padding: 3px;
+			background: #FAAF0A;
+			border-radius: 50%;
+			border: 4px solid #fff;
+			cursor: pointer;
+			animation: musicMove 2s linear infinite;
+		}
+		@keyframes musicMove{
+			from {
+				transform: rotate(0);
+			}
+			to{
+				transform: rotate(360deg);
+			}
+		}
+		.difficult{
+			width: 839px;
+			height: 402px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			margin: auto;
+			background: url(../sucai/difficult.png) center center no-repeat;
+			display: none;
+		}
+		.difficult .anniu{
+			width: 100%;
+			margin-top: 220px;
+			height: 75px;
+			display: flex;
+			justify-content: center;
+		}
+		.difficult .anniu>div{
+			margin: 0 15px;
+			cursor: pointer;
+		}
+		.difficult .anniu>div img:hover{
+			border-radius: 22px;
+			transform: scale(1.1, 1.1)
+			/*box-shadow: 0px 0px 10px 5px  rgba(0, 0, 0, 0.2);*/
+
+		}
+		.difficult .quit{
+			position: absolute;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			bottom: -50px;
+			width: 107px;
+			height: 109px;
+			cursor: pointer;
+			transition: transform 0.2s ease;
+		}
+		.difficult .anniu .easy:hover{
+			transform: scale(1.1, 1.1)
+		}
+		.difficult .anniu .medium:hover{
+			 transform: scale(1.1, 1.1)
+		 }
+		.difficult .anniu .hard:hover{
+			  transform: scale(1.1, 1.1)
+			}
+		.difficult .quit:hover{
+			transform: scale(1.1, 1.1)
+		}
+/* 倒计时 */
+	.cover{
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.6);
+		position: absolute;
+		display: none;
+		top: 0;
+		left: 0;
+		z-index: 99;
+	}
+	.count>div{
+		width: 100px;
+		height: 150px;
+		background: blue;
+		font-size: 50px;
+		color: gold;
+		text-align: center;
+		line-height: 150px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+	}
+/* gameover */
+
+.over>div{
+	width: 489px;
+	height: 423px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	background: url(../sucai/over.png) center center no-repeat /cover;
+}
+.over>div span{
+	position: absolute;
+	top: 155px;
+	left: 295px;
+	color: #fff;
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0 0 7px rgba(80, 80, 0, 0.8);
+}
+.over>div .bestScore{
+	top: 202px;
+}
+.over>div img{
+	width: 93px;
+	position: absolute;
+	top: 270px;
+	margin: 0 130px;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
+.over>div img:hover{
+	transform: scale(1.1, 1.1);
+}
+.over>div img:last-child{
+	margin: 0 280px;
+	width: 90px;
+}
+/* 暂停界面 */
+.stopbox{
+	display: none;
+}
+.stopbox>div{
+	width: 470px;
+	height: 221px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	background: url(../sucai/stopbox.png) center center no-repeat /cover;
+}
+.stopbox>div img{
+	margin-top: 90px;
+	margin-left: 45px;
+	width: 90px;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
+.stopbox>div img:hover{
+	transform: scale(1.1, 1.1)
+}
+
+/* 游戏页面布局 */
+    .container{
+            position: absolute;
+            width: 700px;
+            height:90px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+        .container>div{
+            margin: 0 15px;
+        }
+        .container .stop{
+        	cursor: pointer;
+        }
+        .life{
+        	width: 352px;
+            padding-top: 10px;
+            padding-right: 30px;
+            position: relative;
+        }
+        .life>img{
+        	position: absolute;
+        }
+        .progress{
+        	width: 160px;
+        	height: 31px;
+        	top: 27px;
+        	left: 65px;
+        	transition: all 0.5s ease-in;
+        }
+        .scorebox{
+            background: url(../sucai/score.png) center center no-repeat /cover; 
+            width: 210px;
+            height: 61px;
+            text-align: center;
+            line-height: 81px;
+            color: #fff;
+        }
+        .scorebox span{
+        	margin-left: 60px;
+        }
+
+/* 打字游戏JS */
+    	.box{
+    		width: 1000px;
+    		height: 100%;
+    		position: absolute;
+    		display: none;
+    		left: 0;
+    		right: 0;
+    		margin: 0 auto;
+    		top: 0;
+    	}
+    	.item{
+    		width:80px;
+    		height:80px;
+    		position:absolute;
+            top: -80px;
+    	}

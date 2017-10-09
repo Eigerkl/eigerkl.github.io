@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="JS/animate.js"></script>
+    </head>
+    <body>
+        
+    	<div class="brand">
+    		<img src="img/圆角矩形-14.gif" alt="">
+            <p style="color: #fff">0</p>
+    	</div>
+        <div class="button">
+            <div><img src="img/开始.gif" alt="" class="start"></div>
+            <div><img src="img/自动模式.gif" alt="" class="auto"></div>
+            <div><img src="img/重新开始1.gif" alt="" class="shuaxin"></div>
+        </div>
+    	<div class="jiafen"> +100</div>
+
+    </body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body,html{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #eee;
+        }
+    	.jiafen{
+			width: 20px;
+			height: 20px;
+			font-size: 14px;
+			line-height: 20px;
+			text-align: center;
+			color: #fff;
+			position: absolute;
+			left: 0;
+			top: 0;
+			opacity: 0;
+            font-weight: bold;
+            transition: 
+    	}
+    	.brand,.button{
+    		width: 240px;
+    		height:120px;
+    		font-size: 26px;
+    		line-height: 60px;
+    		/* border: 2px solid #000; */
+            margin-left: 30px;
+    		top: 100px;
+            position: relative;
+            /* border-radius: 20px 0 0 20px; */
+            /* background: rgba(255,255,255,1); */
+    	}
+        .button >div>img{
+            width: 150px;
+        }
+        .brand img{
+            cursor: default;
+            width: 200px;
+        }
+        .brand p{
+            position: absolute;
+            left: 100px;
+            top:-5px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .button{
+            /* top: 300px; */
+            height: 180px;
+        }
+        .button>div{
+            width: 100%;
+            height: 33.33%;
+            box-sizing: border-box;
+            padding-right: 35px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        .box{
+            position: absolute;
+            top: 20px;
+            left: 50px;
+        }
+       /*  .button>div:nth-child(1){
+            background:-webkit-linear-gradient(#fff,tomato 50%,#fff) ;
+            border-radius: 20px 0 0 0;
+        } */
+      /*   .button>div:nth-child(1):hover{
+            background:-webkit-linear-gradient(tomato,#fff,tomato) ;
+        } */
+      /*   .button>div:nth-child(2){
+            background:-webkit-linear-gradient(#fff,royalblue 50%,#fff) ;
+        } */
+      /*   .button>div:nth-child(2):hover{
+            background:-webkit-linear-gradient(royalblue,#fff,royalblue) ;
+        } */
+    /*     .button>div:nth-child(3){
+            background:-webkit-linear-gradient(#fff,forestgreen 50%,#fff) ;
+             border-radius: 0 0 0 20px ;
+        } */
+       /*  .button>div:nth-child(3):hover{
+            background:-webkit-linear-gradient(forestgreen,#fff,forestgreen) ;
+        } */
+    </style>
+<!--     <script>
+    	var div=document.createElement('div');
+    	var FoodX,FoodY;
+    	div.style.cssText='width:1000px;height:600px;background:#000;margin:0 auto;border-left:1px solid #000;border-bottom:1px solid #000;';
+    	document.body.appendChild(div);
+    	for(let i=0;i<30;i++){
+    		for(let j=0;j<30;j++){
+    			var box=document.createElement('div');
+    			box.style.cssText='width:19px;height:19px;background:#000;margin-right:1px;margin-top:1px;float:left;border-radius:50%';
+    			div.appendChild(box);
+    			box.id=j+'---'+i;
+    		}
+    	}
+    	var she=[{x:13,y:15},{x:14,y:15},{x:15,y:15}];
+    	function drwSnake(she){
+    		she.forEach((val,index)=>{
+
+    			var id=val.x+'---'+val.y;
+    			if(index==0){
+    				document.getElementById(id).style.background='lime';
+    			}else{
+    				document.getElementById(id).style.background='green';
+    			}
+    			
+
+    		})
+    	}
+    	drwSnake(she);
+    	function drwFood(she){
+    		var x=Math.floor(Math.random()*30);
+    		var y=Math.floor(Math.random()*30);
+    		while(checkPos(she,x,y)){
+    			x=Math.floor(Math.random()*30);
+    			y=Math.floor(Math.random()*30);
+    		}
+    		FoodX=x;FoodY=y; 
+    		document.getElementById(x+'---'+y).style.background='gold';
+    		return {x,y}
+    	}
+    	
+    	var food=drwFood(she);
+    	function checkPos(she,x,y){
+    		return she.some((val,index)=>{
+    			return val.x==x&&val.y==y;
+    		})
+    	}  
+		//单个时间函数的方法
+		var dir='left';
+    	function move(){
+    		var newX,newY;
+    		if(dir=='left'){
+    			newX=she[0].x-1;
+    			newY=she[0].y;
+    		}else if(dir=='right'){
+    			newX=she[0].x+1;
+    			newY=she[0].y;
+    		}else if(dir=='top'){
+    			newX=she[0].x;
+    			newY=she[0].y-1;
+    		}else if(dir=='down'){
+ 				newX=she[0].x;
+    			newY=she[0].y+1;   			
+    		}   		
+    		if(newX<0||newX>29||newY<0||newY>29){
+    			confirm('撞墙了！ 是否继续？');
+    			clearInterval(t)
+    			return;
+    		}
+    		if(checkPos(she,newX,newY)){	
+    			confirm('撞到自己了！！ 是否继续？');
+    			clearInterval(t)
+    			return;
+    		}
+    		she.unshift({x:newX,y:newY});
+	    	drwSnake(she);
+    		if(newX==food.x&&newY==food.y){
+    			food=drwFood(she) 
+    		}else{
+    			var last=she.pop();
+	    		document.getElementById(last.x+'---'+last.y).style.background='#000';	
+    		}
+    			
+    	}	
+    	var	t=setInterval(move, 100)
+    	document.onkeydown=function(e){
+
+    		switch (e.keyCode)
+    		{
+    			case 37:
+    			if(dir!='right'){
+    				dir='left';
+    				break;
+    			}
+    			case 38:
+    			if(dir!='down'){
+    				dir='top';
+    				break;
+    			}
+    			case 39:
+    			if(dir!='left'){
+    				dir='right';
+    				break;
+    			}
+    			case 40:
+    			if(dir!='top'){
+    				dir='down';
+    				break;
+    			}
+    		}
+
+    	}
+    </script> -->
+    <script>
+     	var box=document.createElement('div');
+        box.className='box';
+     	document.body.appendChild(box);
+     	var brand=document.getElementsByClassName('brand')[0];
+     	var jiafen=document.getElementsByClassName('jiafen')[0];
+        box.appendChild(jiafen);
+        var start=document.getElementsByClassName('start')[0];
+        var auto=document.getElementsByClassName('auto')[0];
+        var shuaxin=document.getElementsByClassName('shuaxin')[0];
+        var shuzu=[];
+        shuaxin.onclick=function(){
+            location.reload() 
+        }
+    	function snake(obj,rowNum,colNum,brand){
+    		this.obj=obj;
+    		this.rowNum=rowNum;
+    		this.colNum=colNum;
+    		this.snake=[{x:Math.floor(rowNum/2)-1,y:Math.floor(colNum/2)},{x:Math.floor(rowNum/2),y:Math.floor(colNum/2)},{x:Math.floor(rowNum/2)+1,y:Math.floor(colNum/2)}];
+    		this.headColor='lime';
+    		this.bodyColor='green';
+    		this.food=null;
+    		this.dir='left';
+    		this.time=200;
+    		this.score=0;
+    		this.level=1;
+    		this.brand=brand;
+            this.t=null;
+            this.moveWay=null;
+    		this.scoreObj=document.querySelector('.brand p');
+            this.flag=true;
+            this.switch=true;
+            this.flag1=true;
+            this.pic=1;
+    	}
+    	snake.prototype={
+    		init:function(){
+                var that=this;
+    			this.createBox();
+                this.drwFood();
+    			this.drwSnake();
+                start.onclick=function(){
+                    that.flag1=false;
+                    if(that.flag){
+                        that.move();
+                        start.src="img/暂停.gif";
+                    }else{
+                        clearInterval(that.t);
+                        start.src="img/开始.gif";
+                    } 
+                    that.flag=!that.flag; 
+                }
+    			auto.onclick=function(){
+                    that.flag1=true;
+                    if(that.flag){
+                        clearInterval(that.t);
+                        that.freeMove();
+                        auto.src="img/自己玩.gif";
+                    }else{
+                        clearInterval(that.t);
+                        auto.src="img/自动模式.gif";
+                    }
+                    that.flag=!that.flag; 
+                }
+ 
+    			this.onkeydown();    
+    		},
+    		createBox:function(){
+    			this.obj.style.cssText=`width:${this.rowNum*20}px;height:${this.colNum*20}px;margin:10px 250px;border-radius:10px;background:rgba(0,0,0,1);transition:all 0.5s;`
+    			for(let i=0;i<this.colNum;i++){
+    				for(let j=0;j<this.rowNum;j++){
+    					var div=document.createElement('div');
+    					div.id=j+'-'+i;
+    					div.style.cssText=`width:20px;height:20px;margin-right:0px;margin-top:0px;float:left;background:tansparent;border-radius:50%;`;
+    					this.obj.appendChild(div);
+    				}
+    			}
+    		},
+            drwSnake:function(){
+                this.snake.forEach((val,index)=>{
+                    var id=val.x+'-'+val.y;
+                    if(index==0){
+                            document.getElementById(id).style.background=this.headColor;
+                    }else if(index==1||index==2){
+                            document.getElementById(id).style.background=this.bodyColor;
+                    }else{
+                        document.getElementById(id).style.background=shuzu[index-3];
+                    }
+                })
+            },
+            drwFood:function(){
+                var x=Math.floor(Math.random()*this.rowNum);
+                var y=Math.floor(Math.random()*this.colNum);
+                while(this.checkPos(x,y,this.snake)){
+                    x=Math.floor(Math.random()*this.rowNum);
+                    y=Math.floor(Math.random()*this.colNum);
+                }
+                var se=document.getElementById(x+'-'+y).style.background=`rgb(${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)})`;
+                this.food={x,y,se};
+            },
+    		checkPos:function(x,y,she){
+    			return she.some((val,index)=>{
+    				return val.x==x&&val.y==y;
+    			})
+    		},
+            mWay:function(){
+                newX=this.snake[0].x;
+                newY=this.snake[0].y;
+                switch (this.dir)
+                {
+                    case 'top':
+                    newY=this.snake[0].y-1;
+                    break;
+                    case 'down':
+                    newY=this.snake[0].y+1;
+                    break;
+                    case 'left':
+                    newX=this.snake[0].x-1;
+                    break;
+                    case 'right':
+                    newX=this.snake[0].x+1;
+                    break;
+                }
+                if(newX<0||newY<0||newX>=this.rowNum||newY>=this.colNum){
+                    return;
+                }
+                if(this.checkPos(newX,newY,this.snake)){
+                    return;
+                }
+                this.snake.unshift({x:newX,y:newY});
+                this.drwSnake();
+                if(this.food.x==newX&&this.food.y==newY){
+                    shuzu.push(this.food.se);
+                    console.log(shuzu);
+                    jiafen.style.left=newX*20+'px';
+                    jiafen.style.top=newY*20+'px';
+                    jiafen.style.fontSize='14px';
+                    jiafen.style.color=this.food.se;
+                    jiafen.style.opacity='1';
+                    this.drwFood();
+                    jiafen.style.transition='noen';
+                    animate(jiafen,{top:newY*20}, 1,function(){
+                        jiafen.style.top=newY*20-20+'px';
+                        jiafen.style.opacity='0';
+                        jiafen.style.transition='all 1s';
+                        jiafen.style.fontSize='100px';
+                    });                     
+                    this.score=this.score+100;
+                    if(this.score%200==0){ 
+                        console.log(this.level); 
+                        this.pic++;
+                        if(this.pic>=5){
+                            this.pic=1;
+                        }
+                        // this.obj.style.background=`url(img/bg/${this.pic}.jpg) center center no-repeat /cover`;
+                        // if(this.score == 200)this.obj.style.background='rgba(255,255,0,1)';
+                        // if(this.score == 400)this.obj.style.background='rgba(0,255,255,1)';
+                        // if(this.score == 600)this.obj.style.background='rgba(255,0,255,1)';
+                        // if(this.score == 800)this.obj.style.background='rgba(0,0,255,1)';
+                        // if(this.score == 1000)this.obj.style.background='rgba(255,0,0,1)';
+                        this.level=this.level+1;
+                        this.time=this.time-20;
+                        if(this.time<=40){
+                            this.time==40;
+                            this.level='达到最高级'
+                        }
+                        clearInterval(this.t);
+                        if(this.flag1){
+                            this.freeMove();
+                        }else{
+                            this.move();
+                        }
+                        
+                    }
+                    this.scoreObj.innerText=this.score;
+                }else{
+                    var last=this.snake.pop();
+                    document.getElementById(last.x+'-'+last.y).style.background='transparent';
+                }
+
+            },
+    		move:function(){
+    			var newX,newY;
+    		    this.t=setInterval(function(){
+                    this.mWay() 
+                     console.log(this.time) 
+    			}.bind(this), this.time)
+
+    		},
+    		onkeydown:function(){
+    			var that=this;
+    			document.onkeydown=function(e){
+    				switch(e.keyCode)
+    				{
+    					case 37:
+    					if(that.dir!=='right'){
+    						that.dir='left';
+    					}
+    					break;
+    					case 38:
+    					if(that.dir!=='down'){
+    						that.dir='top'
+    					}
+    					break;
+    					case 39:
+    					if(that.dir!=='left'){
+    						that.dir='right'
+    					}
+    					break;
+    					case 40:
+    					if(that.dir!=='up'){
+    						that.dir='down'
+    					}
+    					break;
+    				}
+    			}
+    		},
+            freeDir:function(){
+                var X=this.snake[0].x;
+                var Y=this.snake[0].y;
+                    if(X<this.food.x&&Y<this.food.y){
+                        if(this.dir!='left'){
+                            this.dir='right';
+                            if(X==this.food.x){
+                                this.dir='down';
+                            }
+                        }else{
+                            this.dir='down';
+                            if(Y==this.food.y){
+                                this.dir='right';
+                            }
+                        }
+                    }
+                    if(X>this.food.x&&Y<this.food.y){
+                        if(this.dir!='right'){
+                            this.dir='left';
+                            if(X==this.food.x){
+                                this.dir='down';
+                            }
+                        }else{
+                            this.dir='down';
+                            if(Y==this.food.y){
+                                this.dir='left';
+                            }
+                        }
+                    }
+                    if(X>this.food.x&&Y>this.food.y){
+                        if(this.dir!='right'){
+                            this.dir='left';
+                            if(X==this.food.x){
+                                this.dir='top';
+                            }
+                        }else{
+                            this.dir='top';
+                            if(Y==this.food.y){
+                                this.dir='left';
+                            }
+                        }
+                    }
+                    if(X<this.food.x&&Y>this.food.y){
+                        if(this.dir!='left'){
+                            this.dir='right';
+                            if(X==this.food.x){
+                                this.dir='top';
+                            }
+                        }else{
+                            this.dir='top';
+                            if(Y==this.food.y){
+                                this.dir='right';
+                            }
+                        }
+                    }
+                    if(X==this.food.x){
+                        if(Y>this.food.y){
+                            if(this.dir!='down'){
+                                this.dir='top';
+                            }else{
+                                this.dir='left';
+                                if(X==0){
+                                    this.dir='top';
+                                     if(Y==this.food.y){
+                                        this.dir='right'
+                                    }
+                                }
+                            }
+                        }else{
+                            if(this.dir!='top'){
+                                this.dir='down';
+                            }else{
+                                this.dir='left';
+                                if(X==0){
+                                    this.dir='top';
+                                    if(Y==this.food.y){
+                                        this.dir='right'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if(Y==this.food.y){
+                        if(X>this.food.x){
+                            if(this.dir!='right'){
+                                this.dir='left';
+                            }else{
+                                this.dir='top';
+                                if(Y==0){
+                                    this.dir='left';
+                                    if(X==this.food.x){
+                                        this.dir='down'
+                                    }
+                                }
+                            }
+                        }else{
+                            if(this.dir!='left'){
+                                this.dir='right';
+                            }else{
+                                this.dir='top';
+                                if(Y==0){
+                                    this.dir='right';
+                                    if(X==this.food.x){
+                                        this.dir='down'
+                                    }
+                                }
+                            }
+                        }
+                    } 
+            },
+            freeMove:function(){
+                var newX,newY;
+                this.t=setInterval(function(){
+                    this.mWay();
+                    this.freeDir();
+                    
+                }.bind(this), this.time)
+            }
+    	}
+    	var greedySnake=new snake(box,50,30,brand);
+    	greedySnake.init();
+
+    </script>
+</html>

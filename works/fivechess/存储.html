@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+	    body{
+	    	background: #fff;
+	    }
+    	canvas{
+    		background: #aaa;
+    		margin:  0 auto; 
+    		display: block; 
+    	}
+    	a{
+    		width: 300px;
+    		height: 300px;
+    		background: red;
+    		display: block;
+    	}
+    </style>
+    <body>
+    	<canvas width="600" height="600"></canvas>
+    	<input type="file" >
+    	<!-- <img src="a9y5de825183938855.jpg" alt=""> -->
+    </body>
+    <script>
+    	var canvas = document.querySelector('canvas');
+    	var ctx = canvas.getContext("2d");
+    	// var img = document.querySelector('img');
+    	// img.onload=function(){
+    	// 	ctx.drawImage(img, 0,0,200,200);
+    	// }
+    	
+    	var input = document.querySelector('input[type = file]');
+    	input.onchange = function(){
+    		//监控input的内容是否发生了改变
+    		var file = this.files[0];
+    		// 当内容发生改变时，获取该元素files属性，
+    		var reader = new FileReader();
+    		reader.readAsDataURL(file);
+    		//将获取的文件信息读取为路径
+    		reader.onload = function(){
+    			//监控文件读取是否完成
+    			console.dir(this);
+    			var img = new Image();
+    			img.src =this.result;
+    			document.body.appendChild(img);
+    			img.onload=function(){
+    				ctx.drawImage(img, 0,0);
+    			}
+    			
+    		}   		
+    	}
+
+
+
+
+
+
+    	// 文件下载
+    	// var canvas = document.querySelector('canvas');
+    	// var cobj = canvas.getContext("2d");
+    	// cobj.fillRect(200, 200, 200,200);
+    	// var URL = canvas.toDataURL('image/png');
+    	// var a = document.createElement('a');   	
+    	// a.href = URL;
+    	// a.download = 'fdab.png';
+    	// document.body.appendChild(a);
+    	// console.log(URL);
+
+    	//文件读取
+    	// var input = document.querySelector('input[type = file]');
+    	// input.onchange = function(){
+    	// 	//监控input的内容是否发生了改变
+    	// 	var file = this.files[0];
+    	// 	// 当内容发生改变时，获取该元素files属性，
+    	// 	var reader = new FileReader();
+    	// 	reader.readAsDataURL(file);
+    	// 	//将获取的文件信息读取为路径
+    	// 	reader.onload = function(){
+    	// 		//监控文件读取是否完成
+    	// 		console.dir(this);
+    	// 		var img = new Image();
+    	// 		img.src =this.result;
+    	// 		document.body.appendChild(img);
+    	// 	}   		
+    	// }
+    </script>
+</html>

@@ -1,0 +1,33 @@
+*{margin: 0; padding: 0;}
+html{overflow:scroll;overflow-x:hidden;}
+body,html{width: 100%; height: 100%; font-family:'微软雅黑', Verdana, Arial, Helvetica, sans-serif; font-size: 12px;}
+body{ background-position: top center; background-color: #232323; }
+ul,ol{list-style: none;}
+img{display: block; border:none;}
+.clearfix:after {content:".";display:block;height:0;clear:both;visibility:hidden;}.clearfix {display:inline-block;}* html .clearfix {height:1%;}.clearfix {display:block}.clearfix:after {content:".";display:block;height:0;clear:both;visibility:hidden;}.clearfix {display:inline-block;}* html .clearfix {height:1%;}.clearfix {display:block}
+
+.banner{width: 100%; height: 100px; position: fixed; z-index: 1;}
+.jay{width: 263px; height: 200px; position: fixed; top: 6%; left: 10%; z-index: 0;}
+.container{width: 800px; height: 500px; position: fixed; top: 50%; left: 50%; margin-top: -250px; margin-left: -400px; z-index: 2;}
+.content{width: 100%; height: 100%; position: relative; z-index: 3; }
+.content li{width: 160px; height: 100px; position: absolute; left: 42%; top: 160%; cursor: pointer; overflow: hidden; z-index: 9; background: #ffffff; box-shadow: 1px 1px 3px 0px #000000;
+transition: transform 1s;
+-0-transition: -o-transform 1s;
+-moz-transition: -moz-transform 1s;
+-webkit-transition: -webkit-transform 1s;
+}
+.content li span,.content li span a,.content li span img,.content li span strong{display: block; width: 100%; height: 100%;}
+.content li span{position: relative;}
+.content li span a,.content li span strong{position: absolute; z-index: 10; display: none;}
+.content li span strong{left: 160px;}
+.content li span a img{z-index: 9;}
+
+.load{width: 100%; height: 100%; position: fixed; z-index: 12;}
+.load span{ display: block;  width: 32px; height: 32px; background: #ffffff; padding: 10px; position: fixed; top: 50%; left: 50%; margin-left: -21px; margin-top: -21px; border-radius: 10px; box-shadow: 1px 1px 2px #111111;}
+
+.left,.right{width: 94px; height: 120px; background: url(../img/button.png); cursor: pointer; position: fixed; top: 50%; margin-top: -35px; opacity: 0.8; filter:alpha(opacity=90); z-index: 99;}
+.left{background-position: -206px 0;   left: 0px; margin-left: -95px;}
+.right{background-position: 0px 0;   right: 0px;  margin-right: -95px;}
+
+.zs{width:1301px; height:106px; position: fixed; top:0px; left:50%; margin-left:-650px; z-index:99999;}
+.g{width:334px; height:370px; position:fixed; bottom:5%; right:5%;}

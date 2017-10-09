@@ -1,0 +1,345 @@
+
+	*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	body,html{
+		width: 100%;
+		height: 100%;
+		background: #eee;
+	}
+	.down{
+		left: 20px;
+		position: absolute;
+		top:10px;
+		transition:2s;
+		opacity: 0.5;
+		cursor: pointer;
+		animation:la 1s ease-in-out infinite alternate;
+	}
+	@keyframes la{
+		from{ transform:translate(0,-5px) }
+		to{transform:translate(0,5px) }
+    }
+    .down:hover{
+    	animation:none;
+    	opacity: 1;
+    }
+	.down img ,.down p{
+		position: absolute;
+		top:0
+	}
+	.down p{
+		font-size: 12px;
+		color: #999;
+		width: 90px;
+		top:15px;
+		left: 35px;
+	}
+	.down:hover{
+
+	}
+	table{
+		// display: none;
+    	border: 1px solid #d9d9d9; 
+    	border-collapse: collapse;
+    	border-spacing: 0;
+    	border-top: 2px solid #c20c0c;
+    	position: absolute;
+    	height: 463px;
+    	top: -463px;
+    	overflow: auto;
+    	width: 500px;
+    	font-size: 12px;
+    	transition: top 0.3s ease-out;
+	}
+	table thead{
+		border-bottom: 2px solid #ccc;
+	}
+	table th{
+		height: 38px;
+	    background-color: #f7f7f7;
+	    background-position: 0 0;
+	    background-repeat: repeat-x;
+	    vertical-align: top;
+	    text-align: left;
+	    font-weight: normal;
+	    color: #666;
+	    url(../img/table.png) no-repeat 0 9999px
+	}
+	table th .wp{
+		height: 18px;
+	    line-height: 18px;
+	    padding: 8px 10px;
+	}
+	table tbody tr:nth-child(odd){
+		background: #efefef;
+	}
+	table tbody tr:nth-child(even){
+		background: #fff;
+	}
+	table tbody tr>td:nth-child(1){
+		color: #999;
+		text-align: center;
+	}
+	table tbody tr>td:nth-child(2){
+		padding: 10px;
+	}
+	table tbody tr>td:nth-child(2)>div{
+		height: 50px;
+	}
+	table tbody tr>td:nth-child(2) img{
+		width: 50px;
+		float: left;
+	}
+	table tbody tr>td:nth-child(2) i{
+		width: 19px;
+	    height: 19px;
+	    display: inline-block;
+	    cursor: pointer;
+	    vertical-align: middle;
+	    background: url(../img/开始.png);
+	    float: left;
+	    margin:17px 5px 0 10px;
+	}
+	table tbody tr>td:nth-child(2) span{
+		margin-top: 17px;
+		display: inline-block;
+	}
+	table tbody tr>td{
+		padding: 0 10px;
+	}
+	table tbody tr td:nth-child(3){
+		width: 70px;
+	}
+	table tbody tr td:nth-child(3) a{
+		display: none
+	}
+	table tbody tr:hover td:nth-child(3) a{
+		display: block;
+	}
+	table tbody tr:hover td:nth-child(3) span{
+		display: none;
+	}
+	.controls{
+		width: 100%;
+		height: 100px;
+		position: absolute;
+		bottom: 0px;
+		background: #fff;
+		border-top: 1px solid #eee;
+	}
+	.controls .mask{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		/* background: rgba(0, 0, 0, 0.3); */
+		cursor: default;
+	}
+	.controls>.box{
+		position: relative;
+		width: 1200px;
+		height: 100%;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+	}
+	.controls>.box>.box_left{
+		width: 240px;
+		height: 100%;
+		background: #fff;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.controls>.box>.box_progress{
+		width: 650px;
+		height: 100%;
+		/* background: green; */
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.controls>.box>.box_vice{
+		width: 200px;
+		height: 100%;
+		background: orange;
+	}
+	.controls>.box>.box_left ul{
+		display: flex;
+		height: 100%;
+		justify-content: space-between;
+		align-items: center;
+		
+	}
+	.controls>.box>.box_left li:nth-of-type(1), .controls>.box>.box_left li:nth-of-type(3){
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background: #C20C0C;
+		text-align: center;
+		line-height: 50px;
+		cursor: pointer;
+		color: #fff;
+	}
+	.controls>.box>.box_left li:nth-of-type(2){
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		background: #C20C0C;
+		text-align: center;
+		line-height: 60px;
+		cursor: pointer;
+		color: #fff;
+	}
+	.controls>.box>.box_progress >.imgbox{
+		width: 90px;
+		height: 90px;
+		background: #eee;
+		border-radius: 50%;
+		box-shadow: 0 0 2px 2px #ccc;
+	}
+	.controls>.box>.box_progress >.progress{
+		width: 550px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
+	.controls>.box>.box_progress >.progress ul{
+		width: 550px;
+		height: 10px;
+		border-radius: 10px;
+		background: #eee;
+		border-radius: 10px;
+		position: absolute;
+		
+	}
+	.controls>.box>.box_progress >.progress ul>div{
+		width: 0px;
+		height: 100%;
+		border-radius: 10px;
+		background: #C20C0C;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.controls>.box>.box_progress >.progress ul>li:nth-child(1){
+		text-align: center;
+		color: #000;
+		font-size: 15px;
+		margin-top: -25px;
+		/* margin-bottom: 5px; */
+	}
+	.controls>.box>.box_progress >.progress ul>li:nth-child(2){
+		width: 19px;
+		height: 19px;
+		border-radius: 50%;
+		/* background: #C20C0C; */
+		margin-top: -1px;
+		cursor: pointer;
+		background: #fff;
+		border: 1px solid #ccc;
+		position: absolute;
+		z-index: 1;
+	}
+	.controls>.box>.box_progress >.progress ul>li:nth-child(2)>span{
+		display: block;
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+		background: #C20C0C;
+		margin: 7px auto;
+	}
+	.controls>.box>.box_progress >.progress ul>li:nth-child(3){
+		text-align: center;
+		float: right;
+		color: #000;
+		font-size: 15px;
+		margin-top: 10px;
+	}
+	.controls>.box>.box_vice ul{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		background: #fff;
+	}
+	.controls>.box>.box_vice ul li:nth-child(1){
+		width: 30px;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		cursor: pointer;
+	}
+	.controls>.box>.box_vice ul li:nth-child(2){
+		width: 120px;
+		height: 5px;
+		background: #eee;
+		border-radius: 10px;
+		position: relative;
+		cursor: pointer;
+	}
+	.controls>.box>.box_vice ul li:nth-child(2)>em{
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		border: 1px solid #ccc;
+		display: block;
+		cursor: pointer;
+		background: #fff;
+		position: absolute;
+		top: -5px;
+		left: -3px;
+	}
+	.controls>.box>.box_vice ul li:nth-child(2)>em>span{
+		width: 5px;
+		height: 5px;
+		display: block;
+		background:  #C20C0C;
+		margin: 5px auto;
+		border-radius: 50%;
+	}
+	.controls>.box>.box_vice ul li:nth-child(2)>div{
+		height: 100%;
+		/* width: 1px; */
+		background: #C20C0C;
+		top: 0;
+		left: 0;
+		position: absolute;
+		border-radius: 10px;
+		cursor: pointer;
+	}
+	.changpian{
+		width: 400px;
+		height: 400px;
+		position: absolute;;
+		top: 60px;
+		left: 0;
+		right: 0;
+		margin:0 auto;
+		animation: move 10s linear infinite;
+	}
+	.changpian img{
+		position: absolute;
+		top:0;
+	}
+	.changpian .bj{
+		width: 400px;
+	}
+	.changpian .singger{
+		width: 240px;
+		top:77px;
+		left: 80px;
+	}
+@keyframes move{
+	from {
+		transform: rotate(0);
+	}
+	to{
+		transform: rotate(360deg);
+	}
+}

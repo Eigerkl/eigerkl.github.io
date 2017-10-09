@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+     	<link rel="stylesheet" href="css/index.css">
+     	<link rel="stylesheet" href="iconfont/iconfont.css">
+     	<script src="js/ajax.js"></script>
+     	<script src="js/weather-pc.js"></script>
+    </head>
+    <body>
+		<video src="video/video621.mp4"  loop autoplay></video>
+		<div class="container">
+			<div class="sec1">	
+				<section class="search">
+					<div class="btn"></div>
+					<input type="text" >
+				</section>
+
+				<section class="now">
+					
+					<div class="now-icon" style="width: 40%;padding-right: 0" >
+						<div class="tmp" style="font-size: 120px;float: left;margin-left: 30px">
+							<span>NA</span>°
+						</div>
+						<div class="tq" style="float: left;">
+							<img src="" alt="" width="120"> 
+							<span></span>
+						</div>
+							
+					</div>
+					<div class="now-basic">
+						<div class="b-1" style="margin-bottom: 25px">
+							<img src="img/icon/local.png" alt="" style="width: 40px;vertical-align: middle;margin-right: 10px">
+							<span class="city" style="margin-right: 20px;color: blue;font-size: 25px;"></span>   <span class="cnty" style="border:1px solid #fff;border-radius: 2px;padding: 3px"></span>
+						</div>
+						<div class="b-4">	
+							<img src="img/icon/time.png" alt="" style="width: 20px;vertical-align: middle;margin-right: 10px"><span>	</span>
+						</div>
+						<div class="b-2">
+							<i class="iconfont">&#xe680;</i><span></span>
+						</div>
+						<div class="b-3">
+							<i class="iconfont">&#xe68e;</i><span></span>
+						</div>
+						
+					</div>
+					<div class="now-now">
+						<div class="w-1">
+							<i class="iconfont">&#xe611;</i><span></span>℃
+						</div>
+						<div class="w-2">
+							<i class="iconfont">&#xe609;</i>相对湿度：<span></span>%
+						</div>
+						<div class="w-3">
+							<i class="iconfont">&#xe7ca;</i><span></span>km
+						</div>
+						<div class="w-4">
+							<i class="iconfont">&#xe669;</i><span></span>
+						</div>
+						<div class="w-5">
+							<i class="iconfont">&#xe8c9;</i><span></span>级
+						</div>
+						<div class="w-6">
+							<i class="iconfont">&#xe73e;</i><span></span>kmph
+						</div>
+					</div>
+				</section>
+				<img src="img/icon/down.png" alt="" class="xiahua">
+			</div>
+			
+			<div class="sec2" style="position: relative;">	
+				<img src="img/icon/top.png" alt="" class="top">
+				<section class="forecast" style="margin-top: 100px;overflow: hidden;">
+					<ul class="date-1">
+						<li class="pic">
+							<img src="" alt="">
+						</li>
+						<li class="time">
+							<span></span>
+						</li>
+						<li class="tq-d">
+							<i class="iconfont day">&#xe6ce;</i><span></span>
+						</li>
+						<li class="tq-n">
+							<i class="iconfont night">&#xe600;</i><span></span>
+						</li>
+						
+						<li class="tmp-max">
+							最高温度：<span></span>℃
+						</li>
+						<li class="tmp-min">
+							最低温度：<span></span>℃
+						</li>
+					</ul>
+					<ul class="date-1">
+						<li class="pic">
+							<img src="" alt="">
+						</li>
+						<li class="time">
+							<span></span>
+						</li>
+						<li class="tq-d">
+							<i class="iconfont day">&#xe6ce;</i><span></span>
+						</li>
+						<li class="tq-n">
+							<i class="iconfont night">&#xe600;</i><span></span>
+						</li>
+						
+						<li class="tmp-max">
+							最高温度：<span></span>℃
+						</li>
+						<li class="tmp-min">
+							最低温度：<span></span>℃
+						</li>
+					</ul>
+					<ul class="date-1">
+						<li class="pic">
+							<img src="" alt="">
+						</li>
+						<li class="time">
+							<span></span>
+						</li>
+						<li class="tq-d">
+							<i class="iconfont day">&#xe6ce;</i><span></span>
+						</li>
+						<li class="tq-n">
+							<i class="iconfont night">&#xe600;</i><span></span>
+						</li>
+						
+						<li class="tmp-max">
+							最高温度：<span></span>℃
+						</li>
+						<li class="tmp-min">
+							最低温度：<span></span>℃
+						</li>
+					</ul>
+				</section>
+				<section class="suggestion">
+					<div class="comf">
+						<div class="con">
+							<h4></h4>
+							<span></span>
+						</div>
+						
+						<div class="cover" style="background: #fff;opacity: 0.8">
+							<img src="img/icon/conf.jpg" alt="" style="width: 80px;margin-top: -10px;margin-left: -15px">
+							<div class="text">
+								<h3 style="color:skyblue">舒适度</h3>
+								<p style="color:skyblue"></p>
+							</div>
+						</div>
+					</div>
+					<div class="drsg">
+						<div class="con">
+							<h4></h4>
+							<span></span>
+						</div>
+						
+						<div class="cover">
+							<img src="img/icon/cloth.png" alt="">
+							<div class="text">
+								<h3>穿衣指数</h3>
+								<p></p>
+							</div>
+						</div>
+					</div>
+					<div class="uv">
+						<div class="con">
+							<h4></h4>
+							<span></span>
+						</div>
+						<div class="cover">
+							<img src="img/icon/ray.png" alt="">
+							<div class="text">
+								<h3>紫外线指数</h3>
+								<p></p>
+							</div>
+						</div>
+					</div>
+					<div class="sport">
+						<div class="con">
+							<h4></h4>
+							<span></span>
+						</div>
+						<div class="cover">
+							<img src="img/icon/sport.png" alt="">
+							<div class="text">
+								<h3>运动指数</h3>
+								<p></p>
+							</div>
+						</div>
+					</div>
+					<div class="flu">
+						<div class="con">
+							<h4></h4>
+							<span></span>
+						</div>
+						<div class="cover">
+							<img src="img/icon/aid.png" alt="">
+							<div class="text">
+								<h3>感冒指数</h3>
+								<p></p>
+							</div>
+						</div>
+					</div>
+					<div class="cw">
+						<div class="con">
+							<h4></h4>
+							<span></span>
+						</div>
+						<div class="cover">
+							<img src="img/icon/car.png" alt="">
+							<div class="text">
+								<h3>洗车指数</h3>
+								<p></p>
+							</div>
+						</div>
+					</div>
+
+				</section>
+			</div>
+			
+		</div>
+    </body>
+
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		list-style: none;
+    	}
+    	body ,html{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+    	}
+    	canvas{
+    		position: absolute;
+    		left: 0;
+    		right: 0;
+    		bottom: 0;
+    		top: 0;
+    		margin:  auto;
+    		background: #FDD69F;
+    		cursor: pointer;
+    	}
+    	input{
+    		border: none;
+    		outline: none;
+    		padding: 3px 5px;
+    		color: #FFF;
+    		top: 20px;
+    		left: 50px;
+    		position: fixed;
+    		background: red;
+    		cursor: pointer;
+    		z-index: 30;
+    		cursor: pointer;
+    	}
+    	.box{
+    		width: 600px;
+    		height: 600px;
+    		position: absolute;
+    		left: 0;
+    		right: 0;
+    		bottom: 0;
+    		top: 0;
+    		margin:  auto;
+    		background: #FDD69F;
+    		box-shadow: 0 0 0 500px rgba(0, 0, 0, 0.8);
+    		transform: scale(0, 0);
+    		transition: all 0.7s;
+    	}
+    	.active{
+    		transform: scale(1, 1);
+    	}
+    	button{
+    		position: absolute;
+    		cursor: pointer;
+    		top: 50px;
+    		left: 50px;
+    	}
+    </style>
+    <body>
+    	<canvas width="600" height="600" class="white"></canvas>
+    	<input type="button" value="查看棋谱">
+    	<button>悔棋</button>
+    	<div class="box"></div>
+    </body>
+    <script>
+    	var input = document.querySelector('input');
+    	var box = document.querySelector('.box');
+    	var canvas = document.querySelector('canvas');
+    	var btn = document.querySelector('button');
+    	var ctx = canvas.getContext("2d");
+    	var obj = {};
+    	function line(x){
+    		return 20+40*x;
+    	}
+
+    	//画出棋盘和棋盘的格子
+    	ctx.strokeStyle = 'black';
+    	ctx.fillStyle = '#FDD69F';
+    	ctx.fillRect(0, 0, 600, 600);
+    	for (var i = 0; i < 15; i++) {
+    		ctx.beginPath();
+    		ctx.moveTo(20+40*i, 20);
+    		ctx.lineTo(20+40*i, 580);
+    		ctx.moveTo(20, 20+40*i);
+    		ctx.lineTo(580, 20+40*i);
+    		ctx.stroke();
+    	}
+
+    	// 画棋盘上的点 
+    	ctx.fillStyle = 'black';
+    	function drawArc(x,y){
+    		ctx.beginPath();
+    		ctx.arc(x, y, 5, 0, 2*Math.PI);
+    		ctx.fill();
+    		ctx.closePath();
+    	}
+    	drawArc(line(3),line(3));
+    	drawArc(line(3),line(11));
+    	drawArc(line(11),line(3));
+    	drawArc(line(11),line(11));
+    	drawArc(line(7),line(7));
+
+    	//点击下棋
+    	canvas.onclick = function (e) {    	
+    		var x = Math.floor(e.offsetX/40);
+    		var y = Math.floor(e.offsetY/40);
+    		if(obj[`${x}-${y}`]){
+    			return;
+    		}
+    		this.classList.toggle('black');
+    		var color = this.className.slice(-5);
+    		makeChess(line(x),line(y),color);
+
+    		if(check(x,y,color) >= 5){
+    			setTimeout(function(){
+    				alert(`${color}取胜！`);
+    			}, 10)
+    			canvas.onclick = null;
+    		}
+			obj[`${x}-${y}`] = color;
+			console.dir(obj);	
+    	}
+    	//判断是否在重复位置下棋
+    	function check(x,y,color){
+    		var cow = 1;
+    		var i = 1;
+    		while(obj[`${x-i}-${y}`] == color){
+    			i++;
+    			cow++;
+    		}
+    		i = 1;
+    		while(obj[`${x+i}-${y}`] == color){
+    			i++;
+    			cow++;
+    		}
+    		var col = 1;
+    		i = 1;
+    		while(obj[`${x}-${y-i}`] == color){
+    			i++;
+    			col++;
+    		}
+    		i = 1;
+    		while(obj[`${x}-${y+i}`] == color){
+    			i++;
+    			col++;
+    		}
+    		var ltrb = 1;
+    		i = 1;
+    		while(obj[`${x-i}-${y-i}`] == color){
+    			i++;
+    			ltrb++;
+    		}
+    		i = 1;
+    		while(obj[`${x+i}-${y+i}`] == color){
+    			i++;
+    			ltrb++;
+    		}
+    		var lblt = 1;
+    		i = 1;
+    		while(obj[`${x-i}-${y+i}`] == color){
+    			i++;
+    			lblt++;
+    		}
+    		i = 1;
+    		while(obj[`${x+i}-${y-i}`] == color){
+    			i++;
+    			lblt++;
+    		}
+    		return Math.max(cow,col,lblt,ltrb);
+    	}
+    	//绘制棋子
+    	function makeChess(x,y,color){
+    		ctx.beginPath();
+    		ctx.arc(x, y, 16, 0,2*Math.PI);
+    		var g = ctx.createRadialGradient(x,y,0,x,y,16)
+    		
+    		if(color == 'black'){
+    			g.addColorStop(0.1,'rgb(60,60,60)');
+    			g.addColorStop(0.9, color);
+    		}else{
+    			g.addColorStop(0, color);
+    			g.addColorStop(0.9,'rgb(220,220,220)');
+    		}
+    		ctx.fillStyle = g;
+    		ctx.fill();
+    		ctx.closePath();
+    		//悔棋
+	    	btn.onclick = function (){
+	    		ctx.clearRect(x-20,y-20,40,40);
+	    	}
+    	}
+    	
+    	//点击出现棋谱
+    	input.onclick = function () {
+    		box.classList.toggle('active');
+    		var URL = canvas.toDataURL('image/png');
+    		var img = new Image();
+    		var a = document.createElement('a');
+    		a.href = img.src = URL;
+    		a.download = 'chess.png';
+    		//先清空<a><div.box>的内容
+    		a.innerHTML = null;
+    		box.innerHTML = null;
+    		a.appendChild(img);
+    		box.appendChild(a);
+    	}
+
+    </script>
+</html>

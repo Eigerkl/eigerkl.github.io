@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>扑克牌</title>
+	<script src="jquery-3.2.1.min.js"></script>
+</head>
+<style>
+	*{
+		margin: 0;
+		list-style: none;
+		padding: 0;
+	}
+	html,body{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	body{
+		background-image: url('images/bigbg.jpg');
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+	main{
+		width: 1000px;
+		height: 100%;
+		margin: 0 auto;
+	}
+	main .imgBox{
+		width: 100%;
+		height: 500px;
+		position: relative;
+		margin-top: 10px;
+	}
+	.pai{
+		width: 90px;
+		height: 140px;
+		position: absolute;
+		left: calc(50% - 45px);
+		top: 0;
+		background-size: 100% 100%;
+		background-image: url('images/8c.png');
+		opacity: 0;
+		border: 2px solid transparent;
+	}
+	.btnLeft,.btnRight{
+		width: 80px;
+		height: 50px;
+		position: absolute;
+		right: 0;
+		left: 0;
+		margin: auto;
+		background: rgba(0, 0, 0, 0.5);
+		color: #fff;
+		text-align: center;
+		font-size: 30px;
+		line-height: 50px;
+		cursor: default;
+		margin-top: 30px;
+	}
+	.btnLeft{
+		top: 450px;
+	}
+	.btnRight{
+		top: 510px;
+	}
+	.active{
+		border: 2px solid cyan;
+	}
+	.rule{
+		width: 80px;
+		height: 30px;
+		background: #eee;
+		border-radius: 10px;
+		margin-top: 20px;
+		line-height: 30px;
+		text-align: center; 
+	}
+</style>
+<body>
+	<main>
+		<audio src=""></audio>
+		<div class="rule">规则</div>
+		<ul class="imgBox"></ul>
+		<div class="btnLeft">&lt;</div>
+		<div class="btnRight">&gt;</div>
+	</main>
+</body>
+<script>
+	var arr = ['s','h','c','d'];
+	var newarr = [];
+	var newObj = {1: 'A', 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 'T', 11: 'J', 12: 'Q', 13: 'K'};
+	var obj = {}
+	while(newarr.length<52){
+		var num=Math.ceil(Math.random()*13);
+		var color=arr[Math.floor(Math.random()*arr.length)];
+		if(!obj[`${num}_${color}`]){
+			obj[`${num}_${color}`]=true;
+			newarr.push({num,color});
+		}
+	}
+	var n = 0;
+	for (var i = 0; i < 7; i++) {
+		for(var j = 0; j <= i; j++){
+			$('<li>').addClass('pai').data('num',newarr[n].num).prop('id',`${i}-${j}`).css({
+				backgroundImage:`url(images/${newObj[newarr[n].num]}${newarr[n].color}.png)`
+			}).delay(n*30)
+			.animate({
+				top: i*50,
+				left: 455-i*50+j*100,
+				opacity:1
+			}, 300).appendTo('.imgBox');
+			n++;
+		}
+	}
+	for (n ;n < newarr.length; n++) {
+		$('<li>').addClass('pai zuo').css({
+				backgroundImage:`url(images/${newObj[newarr[n].num]}${newarr[n].color}.png)`
+			}).delay(n*30).data('num',newarr[n].num).animate({
+				top: 450,
+				left: 250,
+				opacity:1
+			}, 300).appendTo('.imgBox');
+	}
+	var m; 
+	// 声明一个全局变量m,用来保存上次点击的牌
+	$('li').click(function(){
+		var idArr = $(this).prop('id').split('-');
+		var next1 = $(`#${+idArr[0]+1}-${+idArr[1]}`);
+		var next2 = $(`#${+idArr[0]+1}-${+idArr[1]+1}`);
+		if(next1[0] || next2[0]){
+			return ;
+		}
+		$(this).toggleClass('active');
+		if($(this).hasClass('active')){
+			$(this).animate({'top':'-=20'});
+		}else{
+			$(this).animate({'top':'+=20'});
+		}
+		
+		if(m){
+			if($(this).data('num') == m.data('num') || $(this).data('num')+m.data('num') == 13){
+				// 如果两次点击的牌数字相等或者相加为13 就移除它们
+				$(this).stop(false,true);
+				// 使点击的第二张牌即this  上移和移除动画同步进行 
+				$('.active').animate({top:0,left:1000,opacity:0},500,function(){
+					$(this).remove();
+				});
+			}else{
+				// 如果没有配对成功就 回到没点击过的状态
+				$('.active').removeClass('active').animate({top:'+=20'})
+			}
+			m = null;
+			// 当配对结束后，把 m 清空
+		}else{
+			// 如果配对不成功，再次点击给 m 赋值
+			m = $(this);
+		}
+	})
+	var index = 0;
+	// 声明一个全局变量用来设置 被移到右边 的牌的层级 
+	$('.btnRight').click(function(){
+		$('.active.zuo').removeClass('active').animate({top:'+=20'})
+		$('.zuo').eq(-1).animate({left:'+=400',zIndex:index++}).removeClass('zuo').addClass('you');
+		m = null;
+		
+	})
+	$('.btnLeft').click(function(){
+		index = 0;
+		$('.you').each(function(index,val){
+			$('.active.you').removeClass('active').animate({top:'+=20'})
+			$(val).delay(30*index).animate({left:'-=400',zIndex:index}).removeClass('you').addClass('zuo');
+			m = null;
+		})
+	})
+</script>
+<html>
